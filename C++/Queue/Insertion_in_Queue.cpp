@@ -8,15 +8,19 @@ void display(int [], int, int);
 const int SIZE = 50;
 
 int queue[SIZE];
+
+//We have two ends i.e. “front” and “rear” of the queue. When the queue is empty, then both the pointers are set to -1.
+//The “rear” end pointer is the place from where the elements are inserted in the queue. The operation of adding /inserting elements in the queue is called “enqueue”.
+//The “front” end pointer is the place from where the elements are removed from the queue. The operation to remove/delete elements from the queue is called “dequeue”.
+
 int front=-1;
 int rear=-1;
 
 void main()
 {
-   clrscr();
    int item, check;
    char ch='y';
-
+// Asking the user to input Y or y incase he wants to add one more element in the queue i.e. enque operation
    while(ch=='y' || ch=='Y')
    {
       cout<<"Enter item for insertion: ";
@@ -39,6 +43,9 @@ void main()
 
 int insert_in_queue(int queue[], int elem)
 {
+
+//When the rear pointer value is size-1, then we say that the queue is full. When the front is null, then the queue is empty.
+
    if(rear == SIZE-1)
    {
       return -1;
@@ -55,6 +62,8 @@ int insert_in_queue(int queue[], int elem)
    }
    return 0;
 }
+
+// Display the cuurent queue formed as a result of enqueue operation
 
 void display(int queue[], int front, int rear)
 {
