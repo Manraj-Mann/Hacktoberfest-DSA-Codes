@@ -1,73 +1,87 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <time.h>
+#include<conio.h>
 using namespace std;
-vector<int> position;
-bool placement(int k, int i)
+int *x;
+int n;
+int flag = 0;
+bool Place(int k, int i)
 {
-    for (int j = 1; j <= (k - 1); j++)
+    for (int j = 1; j <= k - 1; j++)
     {
-        if ((position[j] == i) || (abs(position[j] - i) == abs(j - k)))
+        if ((x[j] == i) || (abs(x[j] - i) == abs(j - k)))
+        {
             return false;
+        }
     }
     return true;
 }
-
-// void print(int n)
-// {
-//     cout << "[ ";
-//     for (int i = 1; i <= n; i++)
-
-//     {
-//         cout << position[i] << " ";
-//     }
-//     cout << "]" << endl;
-// }
-
-void print(int n)
+void write()
 {
-
+    flag++;
+    cout << endl<<"Solution " << flag << "  ";
+    cout << endl;
     for (int i = 1; i <= n; i++)
-
     {
         for (int j = 1; j <= n; j++)
         {
-            if (position[i] == j)
-                cout << "1 ";
+            if (j == x[i])
+            {
+                cout << "Q"
+                     << " | ";
+            }
             else
-                cout << "0 ";
+            {
+                cout << " "
+                     << " | ";
+            }
+           
         }
-        cout << endl;
+         cout<<endl;
+        for (int i = 0; i <n; i++)
+        {
+           cout << "_ _ " ;
+        }
+        cout<<endl;
+        
+        
+    }
+    for (int k = 1; k <= n; k++)
+    {
+        cout << x[k] << " ";
     }
 }
-
 void nqueens(int k, int n)
 {
-
     for (int i = 1; i <= n; i++)
     {
-        if (placement(k, i))
+        if (Place(k, i))
         {
-            position[k] = i;
+            x[k] = i;
             if (k == n)
             {
-                print(n);
-                cout << endl;
+                write();
             }
             else
-            {
                 nqueens(k + 1, n);
-            }
         }
     }
 }
-
 int main()
 {
-    cout << "Enter the value of n:";
-    int n;
+    cout << "Enter the size of nxn chessboard: ";
     cin >> n;
-    position.resize(n + 1);
-
+    x = new int[n + 1];
+    x[0] = 0;
+    double time_spent = 0.0;
+    clock_t begin = clock();
     nqueens(1, n);
-
+    clock_t end = clock();
+    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+    cout << "No solution found" << endl;
+    cout << "Execution Time : " << time_spent << " seconds" << endl;
+    getch();
     return 0;
 }
