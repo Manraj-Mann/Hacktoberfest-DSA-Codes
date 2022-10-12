@@ -46,7 +46,7 @@ public:
         front = (front+1)%cap;
         size--;
     }
-    void enque(int x) // push element to the front of queue
+    void enque(int x) // push the element to the front of queue
     {
         if(isFull()) {
             cout << "Queue Overflow" << endl;;
